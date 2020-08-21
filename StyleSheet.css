@@ -6,7 +6,7 @@
 
   height: 50px;
 
-  background-color: transparent;
+  background-color: gray;
 
   padding: 0%;
 
@@ -20,7 +20,7 @@
 
   border: 2px solid red;
 
-  background-color: rgba(255, 0, 0, 0.1);
+  background-color: darkred /*rgba(255, 0, 0, 0.1)*/;
 
   padding: 0%;
 
@@ -34,7 +34,7 @@
 
   border: 4px solid lime;
 
-  background-color: rgba(0, 255, 0, 0.1);
+  background-color: green/*rgba(0, 255, 0, 0.1)*/;
 
   padding: 0%;
 
@@ -42,7 +42,39 @@
 
 #game {
 
-  width: auto;
+  border: 20px solid rgb(68, 51, 16);
+
+  width: 1280px;
+
+  height: 720px;
+
+  background-color: rgba(100, 75, 25, 1);
+
+}
+
+.title {
+
+  color: rgba(100, 75, 25, 1);
+
+  background-color: rgb(68, 51, 16);
+
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+  font-weight: bold;
+
+  text-align: center;
+
+  text-shadow: 5px;
+
+}
+
+.map {
+
+  border : 10px solid rgb(68, 51, 16);
+
+  width : 500px;
+  
+  float: left;
 
 }
 
@@ -50,24 +82,56 @@
 
   position: absolute;
 
-  z-index : 1000;
-
   width : 500px;
 
-  float: left;
+  z-index : 1000;
+
+  float: inherit;
 
 }
 
 #turnHistory {
 
-  background-color: darkslategrey;
+  background-color : darkslategrey;
 
-  height: 500px;
+  float : left;
+
+  height : 500px;
 
   width : 200px;
 
-  overflow-y: scroll;
+  overflow-y : scroll;
 
-  overflow-x: hidden;
+  overflow-x : hidden;
+
+}
+
+.turn {
+
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+  font-weight: bold;
+
+  text-align: center;
+
+  margin-left: -20px;
+
+  width: 180px;
+
+  height: 25px;
+
+  color: darkslategrey;
+
+  background-color: lightseagreen;
+
+  border-top: 10px solid lightseagreen;
+  
+  border-right: 10px solid darkslategrey;
+
+  border-left: 10px solid darkslategrey;
+
+  border-bottom: 10px solid lightseagreen;
+
+  margin-bottom: 10px;
 
 }
