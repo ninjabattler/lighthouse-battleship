@@ -26,6 +26,16 @@
 
         <img style="position: relative;" src="Sprites/water.png">
 
+        <div>
+
+          <button class="placementButton" onclick="moveShip('battleship', -1, 0)">Left</button>
+          <button class="placementButton" onclick="moveShip('battleship', 1, 0)">Right</button>
+          <button class="placementButton" onclick="moveShip('battleship', 0, -1)">Up</button>
+          <button class="placementButton" onclick="moveShip('battleship', 0, 1)">Down</button>
+          <button class="placementButton" onclick="rotate()">Rotate</button>
+
+        </div>
+
       </div>
       <!--List of all attacks made by the player and the computer-->
       <ul id="turnHistory"></ul>
