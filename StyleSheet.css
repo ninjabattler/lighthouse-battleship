@@ -66,6 +66,8 @@
 
   text-shadow: 5px;
 
+  margin: 0px;
+
 }
 
 .map {
@@ -90,19 +92,39 @@
 
 }
 
+.nameIcon {
+
+  width: 20px; 
+  
+  color: darkslategrey; 
+  
+  background-color: lightseagreen; 
+  
+  border: 5px solid darkslategrey; 
+  
+  border-radius: 100%;
+
+  position: relative;
+
+  float: left;
+
+}
+
 #turnHistory {
 
   background-color : darkslategrey;
 
   float : left;
 
-  height : 500px;
+  height : 683px;
 
   width : 200px;
 
   overflow-y : scroll;
 
   overflow-x : hidden;
+
+  margin-top: 0px;
 
 }
 
