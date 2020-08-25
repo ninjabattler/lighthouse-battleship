@@ -15,14 +15,35 @@ let enemyGrid = [
   [false, false, false, false, false, false, false, false, false, false]
 ]
 
+let playerGrid = [
+  [false, false, false, false, false, true, false, false, false, false],
+  [false, false, false, false, false, true, false, false, false, false],
+  [false, false, false, false, false, true, false, false, false, false],
+  [false, false, false, false, false, true, false, false, false, false],
+  [false, false, false, false, false, true, false, false, false, false],
+  [false, false, false, false, false, false, false, false, false, false],
+  [false, false, false, false, false, false, false, false, false, false],
+  [false, true, true, false, false, false, false, true, true, false],
+  [false, false, false, false, false, false, false, false, false, false],
+  [false, false, false, false, false, false, false, false, false, false]
+]
+
 //Finds the grid div and places one button for each tile on the grid
-const placeGrid = function(grid){
+const placeGrid = function(grid, enemy){
 
   for(let y= 1; y <= 10; y++){
 
     for(let x = 1; x <= 10; x++){
 
-      grid.innerHTML += `<button class="gridButton" id="gB${x + (y*10)}" onclick=attack(${x},${y},'P1')></button>`;
+      if(!enemy){
+
+        grid.innerHTML += `<button class="gridButton" id="gB${x + (y*10)}" onclick="attack(${x},${y},'P1')"></button>`;
+
+      } else {
+
+        grid.innerHTML += `<button class="gridButton" id="eB${x + (y*10)}" ></button>`;
+
+      }
 
     }
 
@@ -34,9 +55,13 @@ const placeGrid = function(grid){
 
 const attack = function(x, y, attacker, enemy){
 
-  button = document.getElementById(`gB${x + (y*10)}`);
+  let button = document.getElementById(`gB${x + (y*10)}`);
+  if(enemy) button = document.getElementById(`eB${x + (y*10)}`);
 
-  if(enemyGrid[y-1][x-1]){
+  let gridToAttack = enemyGrid;
+  if(enemy) gridToAttack = playerGrid
+
+  if(gridToAttack[y-1][x-1]){
 
     turnHistory.innerHTML += `<div class='turn'><div class="nameIcon">${attacker}</div>Attacks ${x}, ${y}: <div style="color: lime;">Hit!</div><div>`;
 
@@ -57,5 +82,5 @@ const attack = function(x, y, attacker, enemy){
 }
 
 //+++Start Game+++
-placeGrid(document.getElementById("grid"));
-placeGrid(document.getElementById("grid2"));
+placeGrid(document.getElementById("grid"), false);
+placeGrid(document.getElementById("grid2"), true);
