@@ -2,28 +2,30 @@ let attackButton = document.getElementById("attack");
 
 const turnHistory = document.getElementById("turnHistory");
 
-let enemyGrid = [
-  [false, false, false, false, false, true, false, false, false, false],
-  [false, false, false, false, false, true, false, false, false, false],
-  [false, false, false, false, false, true, false, false, false, false],
-  [false, false, false, false, false, true, false, false, false, false],
-  [false, false, false, false, false, true, false, false, false, false],
+const columnNames = ['A','B','C','D','E','F','G','H','I','J'];
+
+const enemyGrid = [
   [false, false, false, false, false, false, false, false, false, false],
   [false, false, false, false, false, false, false, false, false, false],
-  [false, true, true, false, false, false, false, true, true, false],
+  [false, false, false, false, false, false, false, false, false, false],
+  [false, false, false, false, false, false, false, false, false, false],
+  [false, false, false, false, false, false, false, false, false, false],
+  [false, false, false, false, false, false, false, false, false, false],
+  [false, false, false, false, false, false, false, false, false, false],
+  [false, false, false, false, false, false, false, false, false, false],
   [false, false, false, false, false, false, false, false, false, false],
   [false, false, false, false, false, false, false, false, false, false]
 ]
 
-let playerGrid = [
-  [false, false, false, false, false, true, false, false, false, false],
-  [false, false, false, false, false, true, false, false, false, false],
-  [false, false, false, false, false, true, false, false, false, false],
-  [false, false, false, false, false, true, false, false, false, false],
-  [false, false, false, false, false, true, false, false, false, false],
+const playerGrid = [
   [false, false, false, false, false, false, false, false, false, false],
   [false, false, false, false, false, false, false, false, false, false],
-  [false, true, true, false, false, false, false, true, true, false],
+  [false, false, false, false, false, false, false, false, false, false],
+  [false, false, false, false, false, false, false, false, false, false],
+  [false, false, false, false, false, false, false, false, false, false],
+  [false, false, false, false, false, false, false, false, false, false],
+  [false, false, false, false, false, false, false, false, false, false],
+  [false, false, false, false, false, false, false, false, false, false],
   [false, false, false, false, false, false, false, false, false, false],
   [false, false, false, false, false, false, false, false, false, false]
 ]
@@ -37,11 +39,11 @@ const placeGrid = function(grid, enemy){
 
       if(!enemy){
 
-        grid.innerHTML += `<button class="gridButton" id="gB${x + (y*10)}" onclick="attack(${x},${y},'P1')"></button>`;
+        grid.innerHTML += `<button class="gridButton" id="gB${x + (y*10)}" onclick="attack(${x},${y},'P1')">${columnNames[x-1]}${y}</button>`;
 
       } else {
 
-        grid.innerHTML += `<button class="gridButton" id="eB${x + (y*10)}" ></button>`;
+        grid.innerHTML += `<button class="gridButton" id="eB${x + (y*10)}" >${columnNames[x-1]}${y}</button>`;
 
       }
 
@@ -63,13 +65,13 @@ const attack = function(x, y, attacker, enemy){
 
   if(gridToAttack[y-1][x-1]){
 
-    turnHistory.innerHTML += `<div class='turn'><div class="nameIcon">${attacker}</div>Attacks ${x}, ${y}: <div style="color: lime;">Hit!</div><div>`;
+    turnHistory.innerHTML += `<div class='turn'><div class="nameIcon">${attacker}</div>Attacks ${columnNames[x-1]}, ${y}: <div style="color: lime;">Hit!</div><div>`;
 
     button.className = "hit";
 
   } else {
 
-    turnHistory.innerHTML += `<div class='turn'><div class="nameIcon">${attacker}</div>Attacks ${x}, ${y}: <div style="color: red;">Miss!</div><div>`;
+    turnHistory.innerHTML += `<div class='turn'><div class="nameIcon">${attacker}</div>Attacks ${columnNames[x-1]}, ${y}: <div style="color: red;">Miss!</div><div>`;
 
     button.className = "noHit";
 
