@@ -90,7 +90,9 @@ const resetGrid = function(){
 
     for(let x = 1; x <= 10; x++){
 
+      if(document.getElementById(`gB${x + (y*10)}`).className !== "ship"){
         document.getElementById(`gB${x + (y*10)}`).outerHTML = `<button class="gridButton" id="gB${x + (y*10)}" onclick="attack(${x},${y},'P1')">${columnNames[x-1]}${y}</button>`;
+      }
 
     }
 
@@ -129,15 +131,15 @@ const moveShip = function(ship, x, y){
   playerShips[ship].position[0] += x;
   playerShips[ship].position[1] += y;
 
-  if(!verticle){
+  
 
-    if(playerShips[ship].position[0] + playerShips[ship].hits > 11 || playerShips[ship].position[0] + playerShips[ship].hits < 5){
+  if(x !== 0 && (playerShips[ship].position[0] + playerShips[ship].hits > 14 || playerShips[ship].position[0] + playerShips[ship].hits < 5)){
 
-      playerShips[ship].position[0] -= x;
+    playerShips[ship].position[0] -= x;
 
-    }
+  }
 
-  } else if(playerShips[ship].position[1] + playerShips[ship].hits > 11 || playerShips[ship].position[1] + playerShips[ship].hits < 5){
+  if(y !== 0 && (playerShips[ship].position[1] + playerShips[ship].hits > 11 || playerShips[ship].position[1] + playerShips[ship].hits < 5)){
 
     playerShips[ship].position[1] -= y;
 
@@ -148,15 +150,39 @@ const moveShip = function(ship, x, y){
   
   if(!verticle){
     for(let i = 0; i < playerShips[ship].hits; i++){
-
-      document.getElementById(`gB${(posX) + ((posY*10) + i)}`).className = "placing";
+      
+      if(document.getElementById(`gB${(posX) + ((posY*10) + i)}`).className !== "ship"){
+        document.getElementById(`gB${(posX) + ((posY*10) + i)}`).className = "placing";
+      }
 
     }
   } else {
     for(let i = 0; i < playerShips[ship].hits; i++){
 
-      document.getElementById(`gB${(posX) + ((posY*(10)) + 10*i)}`).className = "placing";
+      if(document.getElementById(`gB${(posX) + ((posY*(10)) + 10*i)}`).className !== "ship"){
+        document.getElementById(`gB${(posX) + ((posY*(10)) + 10*i)}`).className = "placing";
+      }
   
+    }
+  }
+
+}
+
+const placeShip = (ship) => {
+
+  let posX = playerShips[ship].position[0];
+  let posY = playerShips[ship].position[1];
+  for(let i = 0; i < playerShips[ship].hits; i++){
+    if(!verticle){
+
+      playerGrid[posX + i][posY] = true;
+      document.getElementById(`gB${(posX + i) + ((posY*(10)))}`).className = "ship";
+
+    } else {
+
+      playerGrid[posX][posY + i] = true;
+      document.getElementById(`gB${(posX) + ((posY*(10)) + 10*i)}`).className = "ship";
+
     }
   }
 
